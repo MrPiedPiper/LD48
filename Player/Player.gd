@@ -36,3 +36,8 @@ func _process(delta):
 func _input(event):
 	if Input.is_action_just_pressed("input_a"):
 		$BaseWeapon.fire()
+
+
+func _on_Player_area_entered(area):
+	area.queue_free()
+	queue_free()
