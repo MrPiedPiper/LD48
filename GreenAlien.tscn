@@ -19,5 +19,5 @@ polygon = PoolVector2Array( 3.84571, -9.13413, 8.29518, -6.35321, 9.87103, -1.25
 position = Vector2( 7.7486e-07, 0.0417141 )
 scale = Vector2( 0.8, 0.8 )
 
-[connection signal="body_entered" from="." to="." method="_on_GreenAlien_body_entered"]
+[connection signal="area_entered" from="." to="." method="_on_GreenAlien_area_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

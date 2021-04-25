@@ -7,10 +7,22 @@ export var ship_size = Vector2(16,16)
 var velocity = Vector2.ZERO
 var friction = 25.0
 
+# when the node and it's children are ready, creates a variable, animationPlayer, that is the AnimationPlayer
+onready var animationPlayer = $AnimationPlayer
+
 #Player movement code is based on movement code from HeartBeast's video: "Make an Action RPG in Godot 3.2 (P2 | delta + smooth movement)"
 func _process(delta):
 	var input = Vector2(Input.get_action_strength("input_right")-Input.get_action_strength("input_left"),Input.get_action_strength("input_down")-Input.get_action_strength("input_up"))
 	input = input.normalized()
+	
+	#input has the player input as a normalized Vector2
+	if input.y > 0:
+		animationPlayer.play("Down")
+	elif input.y < 0:
+		animationPlayer.play("Up")	
+	if input.y == 0:
+		animationPlayer.play("LeftRight")
+	
 	if input == Vector2.ZERO:
 		velocity = velocity.move_toward(Vector2.ZERO,friction * delta)
 	else:
@@ -39,5 +51,6 @@ func _input(event):
 
 
 func _on_Player_area_entered(area):
+	if area.is_in_group("PlayerBullet"): return
 	area.queue_free()
 	queue_free()
