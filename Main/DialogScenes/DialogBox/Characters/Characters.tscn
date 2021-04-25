@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Main/DialogScenes/DialogBox/Characters/BaseChar/BaseChar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Main/DialogScenes/DialogBox/Characters/Characters.gd" type="Script" id=2]
+[ext_resource path="res://sprites/player_dialogue.png" type="Texture" id=3]
+
+[node name="Characters" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+id = 0
+emotion_atlas = ExtResource( 3 )
+frames = 4
+frame_box_size = 32
