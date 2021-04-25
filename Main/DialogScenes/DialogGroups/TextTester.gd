@@ -30,8 +30,11 @@ onready var portrait_right = $DialogBox/Portraits/PortraitRight
 onready var dialog_timer = $DialogBox/DialogTimer
 
 func _ready():
-	if not Engine.editor_hint:return
-	localChars = chars.instance()
+	if not Engine.editor_hint:
+		print("hiding")
+		$DialogBox.hide()
+	else:
+		localChars = chars.instance()
 
 func create_dialog(value):
 	if not Engine.editor_hint:return
