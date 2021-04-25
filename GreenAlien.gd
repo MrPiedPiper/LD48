@@ -1,7 +1,7 @@
 extends Area2D
 
 export(int) var SPEED = 20
-export(int) var ARMOR = 3
+export(int) var ARMOR = 2
 
 # Make the alien move left
 func _process(delta):
@@ -10,8 +10,8 @@ func _process(delta):
 # When the enemy enters a body, delete the body and take damage on the Enemy's armor
 # If the Enemy's armor is less than 0, delete the enemy.
 # Update the score
-func _on_GreenAlien_body_entered(body):
-	body.queue_free()
+func _on_GreenAlien_area_entered(area):
+	area.queue_free()
 	ARMOR -= 1
 	if ARMOR <= 0:
 		var main = get_tree().current_scene
