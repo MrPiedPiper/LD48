@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/player_dialogue.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 32 )
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 8, 67 )
+
+[node name="Bullets" type="Node2D" parent="."]
+
+[node name="Node2" type="Node" parent="."]
+
+[node name="Control" type="Control" parent="Node2"]
+anchor_top = 0.75
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Node2/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="Node2/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Node2/Control/MarginContainer2"]
+margin_left = 8.0
+margin_right = 320.0
+margin_bottom = 64.0
+grow_vertical = 0
+rect_min_size = Vector2( 64, 64 )
+texture = SubResource( 1 )
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Node2/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_left = 80
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Node2/Control/MarginContainer"]
+margin_left = 80.0
+margin_top = 15.0
+margin_right = 320.0
+margin_bottom = 29.0
+text = "Here's some (big) example dialog!"
