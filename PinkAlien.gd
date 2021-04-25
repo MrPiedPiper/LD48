@@ -1,6 +1,6 @@
 extends Area2D
 
-export(int) var SPEED = 20
+export(int) var SPEED = 30
 export(int) var ARMOR = 2
 
 onready var animationPlayer = $AnimationPlayer
@@ -13,13 +13,13 @@ func _process(delta):
 # When the enemy enters a body, delete the body and take damage on the Enemy's armor
 # If the Enemy's armor is less than 0, delete the enemy.
 # Update the score
-func _on_GreenAlien_area_entered(area):
+func _on_PinkAlien_area_entered(area):
 	area.queue_free()
 	ARMOR -= 1
 	if ARMOR <= 0:
 		var main = get_tree().current_scene
 		if main.is_in_group("World"):
-			main.score += 10
+			main.score += 20
 		queue_free()
 
 func _on_VisibilityNotifier2D_screen_exited():
