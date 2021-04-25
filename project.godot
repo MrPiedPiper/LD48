@@ -16,7 +16,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-DialogicSingleton="*res://addons/dialogic/Other/DialogicSingleton.gd"
+Characters="*res://Main/DialogScenes/DialogBox/Characters/Characters.tscn"
+GameManager="*res://GameManager.gd"
+DialogGroups="*res://Main/DialogScenes/DialogGroups/DialogGroups.tscn"
 
 [display]
 

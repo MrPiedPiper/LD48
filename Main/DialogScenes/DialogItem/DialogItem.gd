@@ -1,8 +1,15 @@
 extends Node
 
+enum Sides {
+	NONE = -1,
+	LEFT = 0,
+	RIGHT = 1,
+}
+
 export(String,MULTILINE) var dialog
-export(int,"None","Left","Right") var speaking = 0
+export(Sides) var speaking = -1
 export(Characters.CharacterIds) var left_id = -1
 export(Characters.FrameIds) var left_frame
 export(Characters.CharacterIds) var right_id = -1
 export(Characters.FrameIds) var right_frame
+export(float) var text_speed = 0.125

@@ -12,9 +12,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-new_text = "Test the text you want in there to make sure tha"
-dialog = [ "<left_char=0,left_frame=1,talking=0/>Hey, there!", "This should hopefully
-work correctly.", "<left_char=-1,talking=1,right_char=0,right_frame=1/>And this?", "<left_char=0,talking=-1/>Here's a double clear test" ]
 
 [node name="ColorRectBackground" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -87,8 +84,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
-bbcode_text = "Test the text you want in there to make sure tha"
-text = "Center?"
 fit_content_height = true
 scroll_active = false
 
