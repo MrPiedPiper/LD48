@@ -16,8 +16,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Characters="*res://Main/DialogScenes/DialogBox/Characters/Characters.tscn"
-GameManager="*res://GameManager.gd"
+DialogicSingleton="*res://addons/dialogic/Other/DialogicSingleton.gd"
 
 [display]
 
@@ -30,7 +29,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [global]
 
