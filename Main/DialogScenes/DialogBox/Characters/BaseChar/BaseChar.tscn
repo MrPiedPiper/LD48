@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Main/DialogScenes/DialogBox/Characters/BaseChar/BaseChar.gd" type="Script" id=1]
+
+[node name="BaseChar" type="Node"]
+script = ExtResource( 1 )
+id = null
