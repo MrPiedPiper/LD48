@@ -45,6 +45,7 @@ _global_script_class_icons={
 [application]
 
 config/name="LD48"
+run/main_scene="res://Main/Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
