@@ -89,6 +89,11 @@ scroll_active = false
 
 [node name="DialogTimer" type="Timer" parent="."]
 wait_time = 0.125
+one_shot = true
+
+[node name="AutoTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="gui_input" from="." to="." method="_on_DialogBox_gui_input"]
 [connection signal="timeout" from="DialogTimer" to="." method="_on_DialogTimer_timeout"]
+[connection signal="timeout" from="AutoTimer" to="." method="_on_AutoTimer_timeout"]

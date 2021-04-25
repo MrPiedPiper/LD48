@@ -15,10 +15,12 @@ onready var dialog_label = $DialogContainer/Dialog
 onready var portrait_left = $Portraits/PortraitLeft
 onready var portrait_right = $Portraits/PortraitRight
 onready var dialog_timer = $DialogTimer
+onready var auto_timer = $AutoTimer
 
 var curr_page = 0
-
+var auto = false
 var renamedialog = -1
+var is_done = false
 
 #func _display_test_dialog(value):
 #	if not Engine.editor_hint: return
@@ -29,33 +31,45 @@ var renamedialog = -1
 #	if not Engine.editor_hint: return
 #	dialog.append(new_text)
 
-func start_dialog(id):
+func start_dialog(id,auto=false):
+	clear_dialog()
+	dialog_timer.stop()
+	auto_timer.stop()
 	renamedialog = DialogGroups.get_dialog_by_id(id)
 	curr_page = 0
+	dialog_id = id
+	GameManager.is_dialog_open = true
+	self.auto = auto
 	update_dialog()
 
 func clear_dialog():
-	portrait_left.texture = null
-	portrait_right.texture = null
 	dialog_label.bbcode_text = ""
 	dialog_timer.stop()
+	dialog_label.visible_characters = 0
+	dialog_label.percent_visible = 0
 	curr_page = 0
 	dialog_id = -1
+	portrait_left.texture = null
+	portrait_right.texture = null
+	auto = false
+	is_done = false
 
 func _init():
-	GameManager.is_dialog_open = true
+#	GameManager.is_dialog_open = true
+	pass
 
 func _ready():
 	if Engine.editor_hint:return
 	dialog_label.visible_characters = 0
 	dialog_label.percent_visible = 0
-	start_dialog(1)
+#	start_dialog(0)
 
 func next_page():
 	if curr_page >= len(renamedialog.get_children()):
 		return false
 	dialog_label.visible_characters = 0
 	curr_page += 1
+	print(str("Playing page ", curr_page))
 	update_dialog()
 	return true
 
@@ -151,13 +165,26 @@ func _on_DialogTimer_timeout():
 	if dialog_label.percent_visible < 1:
 		dialog_label.visible_characters += 1
 		dialog_timer.start()
+	elif auto:
+		auto_timer.start()
+
+func _on_AutoTimer_timeout():
+	dialog_progress()
+
+func dialog_press():
+	if dialog_label.percent_visible < 1:
+		dialog_label.percent_visible = 1
+		dialog_timer.stop()
+	else:
+		dialog_progress()
+
+func dialog_progress():
+	var is_dialog_progressing = next_page()
+	if not is_dialog_progressing:
+		emit_signal("dialog_done",dialog_id)
+		is_done = true
+		clear_dialog()
 
 func _input(event):
-	if GameManager.is_dialog_open and event.is_action("input_a") and not event.is_action_pressed("input_a"):
-		if dialog_label.percent_visible < 1:
-			dialog_label.percent_visible = 1
-			dialog_timer.stop()
-		else:
-			var is_dialog_progressing = next_page()
-			if not is_dialog_progressing:
-				emit_signal("dialog_done")
+	if not is_done and not auto and GameManager.is_dialog_open and event.is_action("input_a") and not event.is_action_pressed("input_a"):
+		dialog_press()
