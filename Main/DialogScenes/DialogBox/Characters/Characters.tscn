@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Main/DialogScenes/DialogBox/Characters/BaseChar/BaseChar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/DialogScenes/DialogBox/Characters/Characters.gd" type="Script" id=2]
 [ext_resource path="res://sprites/player_dialogue.png" type="Texture" id=3]
+[ext_resource path="res://sprites/general_dialogue.png" type="Texture" id=4]
+[ext_resource path="res://sprites/robot_dialogue.png" type="Texture" id=5]
 
 [node name="Characters" type="Node"]
 script = ExtResource( 2 )
@@ -10,5 +12,17 @@ script = ExtResource( 2 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 id = 0
 emotion_atlas = ExtResource( 3 )
+frames = 4
+frame_box_size = 32
+
+[node name="Perseus" parent="." instance=ExtResource( 1 )]
+id = 1
+emotion_atlas = ExtResource( 4 )
+frames = 4
+frame_box_size = 32
+
+[node name="Robot" parent="." instance=ExtResource( 1 )]
+id = 2
+emotion_atlas = ExtResource( 5 )
 frames = 4
 frame_box_size = 32

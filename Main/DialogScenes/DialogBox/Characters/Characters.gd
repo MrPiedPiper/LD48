@@ -3,6 +3,8 @@ extends Node
 enum CharacterIds {
 	NONE=-1,
 	PLAYER,
+	PERSEUS,
+	ROBOT,
 }
 enum FrameIds {
 	NEUTRAL,

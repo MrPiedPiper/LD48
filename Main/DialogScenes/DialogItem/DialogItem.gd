@@ -4,6 +4,7 @@ enum Sides {
 	NONE = -1,
 	LEFT = 0,
 	RIGHT = 1,
+	BOTH = 2,
 }
 
 export(String,MULTILINE) var dialog

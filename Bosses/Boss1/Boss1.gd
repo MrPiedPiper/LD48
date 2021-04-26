@@ -19,3 +19,7 @@ func disable_barrier():
 func enable_barrier():
 	.enable_barrier()
 	barrier_sprite.show()
+
+func ship_destroyed():
+	.ship_destroyed()
+	print("DESTRUCTION")
