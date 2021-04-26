@@ -57,6 +57,6 @@ __meta__ = {
 position = Vector2( 320, 0 )
 
 [node name="Boss1" parent="." instance=ExtResource( 4 )]
-position = Vector2( 270, 75 )
+position = Vector2( 270, 67 )
 
 [connection signal="dialog_done" from="GUI/DialogBox" to="." method="_on_DialogBox_dialog_done"]

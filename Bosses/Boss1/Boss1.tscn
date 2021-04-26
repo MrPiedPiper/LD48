@@ -1,103 +1,97 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Bosses/BaseBoss/BaseBoss.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Bosses/Boss1/Boss1.gd" type="Script" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://sprites/enemy_ship.png" type="Texture" id=4]
+[ext_resource path="res://sprites/cannon.png" type="Texture" id=5]
 
-[sub_resource type="CapsuleShape2D" id=7]
-radius = 14.0
-height = 32.0
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 128, 128 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 8, 8 )
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 4 )
+region = Rect2( 128, 0, 64, 128 )
 
-[sub_resource type="CapsuleShape2D" id=3]
-radius = 46.735
-
-[sub_resource type="Animation" id=5]
-resource_name = "HurtFlash"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 resource_name = "Death"
-length = 5.0
+length = 4.0
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath("..:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 5 ),
+"times": PoolRealArray( 0, 4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
+[sub_resource type="Animation" id=4]
+resource_name = "Hover"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 4, 6, 8 ),
+"transitions": PoolRealArray( 0.75, 1.25, 0.75, 1.25, 0.75 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -40 ), Vector2( 0, 0 ), Vector2( 0, 40 ), Vector2( 0, 0 ) ]
+}
+
 [node name="Boss1" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="MainSprite" parent="." index="0"]
-position = Vector2( 28, 0 )
-scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 4 )
-
-[node name="WeakSpot" parent="." index="1"]
-position = Vector2( -6, 0 )
-
-[node name="CollisionShape2D" parent="WeakSpot" index="0"]
-position = Vector2( 15, 0 )
-shape = SubResource( 7 )
-
-[node name="Weapon1Timer" parent="." index="2"]
+[node name="Weapon1Timer" parent="PosNode" index="0"]
 wait_time = 2.0
 
-[node name="Weapon2Timer" parent="." index="3"]
+[node name="Weapon2Timer" parent="PosNode" index="1"]
 wait_time = 2.0
 
-[node name="Weapon1" parent="Weapon1Area" index="0"]
-bullet_speed = 75
+[node name="Weapon1Area" parent="PosNode" index="2"]
+position = Vector2( -39, -28 )
 
-[node name="CollisionShape2D" parent="Weapon1Area" index="2"]
-shape = SubResource( 2 )
+[node name="Weapon1" parent="PosNode/Weapon1Area" index="0"]
+shoot_cooldown = 0.0
 
-[node name="Weapon2" parent="Weapon2Area" index="0"]
-bullet_speed = 75
+[node name="Weapon1Sprite" parent="PosNode/Weapon1Area" index="1"]
+position = Vector2( 17.294, 0 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 5 )
 
-[node name="CollisionShape2D" parent="Weapon2Area" index="2"]
-shape = SubResource( 2 )
+[node name="Weapon2Area" parent="PosNode" index="3"]
+position = Vector2( -39, 28 )
 
-[node name="BarrierArea" parent="." index="6"]
-modulate = Color( 1, 1, 1, 0.32549 )
+[node name="Weapon2" parent="PosNode/Weapon2Area" index="0"]
+shoot_cooldown = 0.0
+shoot_delay = 0.9
 
-[node name="CollisionShape2D" parent="BarrierArea" index="0"]
-position = Vector2( 36, 0 )
-shape = SubResource( 3 )
+[node name="Weapon2Sprite" parent="PosNode/Weapon2Area" index="1"]
+position = Vector2( 17.294, 0 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 5 )
 
-[node name="Sprite" type="Sprite" parent="BarrierArea" index="1"]
-position = Vector2( 21, 0 )
-scale = Vector2( 1.3125, 1 )
-texture = ExtResource( 3 )
+[node name="MainSprite" parent="PosNode" index="4"]
+position = Vector2( 38, 0 )
+scale = Vector2( 1, 1 )
+texture = SubResource( 1 )
 
-[node name="BarrierHurtAnimationPlayer" parent="BarrierArea" index="2"]
-anims/HurtFlash = SubResource( 5 )
+[node name="Sprite" parent="PosNode/WeakSpot" index="1"]
+position = Vector2( 3, 0 )
+scale = Vector2( 1, 1 )
+texture = SubResource( 2 )
 
-[node name="AnimationPlayer" parent="." index="8"]
-anims/Death = SubResource( 6 )
+[node name="CollisionShape2D" parent="PosNode/BarrierArea" index="0"]
+position = Vector2( 60, 0 )
 
-[connection signal="timeout" from="Weapon1Timer" to="." method="_on_Weapon1Timer_timeout"]
-[connection signal="timeout" from="Weapon2Timer" to="." method="_on_Weapon2Timer_timeout"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[node name="AnimationPlayer" parent="PosNode" index="8"]
+autoplay = "Hover"
+anims/Death = SubResource( 3 )
+anims/Hover = SubResource( 4 )
