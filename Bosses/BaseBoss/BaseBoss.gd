@@ -3,26 +3,26 @@ extends Node2D
 var phase = 1
 var _is_waiting = true
 
-onready var weak_spot = $WeakSpot
-onready var weak_spot_hurt_animation_player = $WeakSpot/WeakSpotHurtAnimationPlayer
+onready var weak_spot = $PosNode/WeakSpot
+onready var weak_spot_hurt_animation_player = $PosNode/WeakSpot/WeakSpotHurtAnimationPlayer
 var weak_spot_health = 10
 
-onready var weapon1 = $Weapon1Area/Weapon1
-onready var weapon1_timer = $Weapon1Timer
-onready var weapon1_area = $Weapon1Area
-onready var weapon1_offset_timer = $Weapon1OffsetTimer
-onready var weapon1_hurt_animation_player = $Weapon1Area/Weapon1HurtAnimationPlayer
+onready var weapon1 = $PosNode/Weapon1Area/Weapon1
+onready var weapon1_timer = $PosNode/Weapon1Timer
+onready var weapon1_area = $PosNode/Weapon1Area
+onready var weapon1_offset_timer = $PosNode/Weapon1OffsetTimer
+onready var weapon1_hurt_animation_player = $PosNode/Weapon1Area/Weapon1HurtAnimationPlayer
 var weapon1_health = 10
 
-onready var weapon2 = $Weapon2Area/Weapon2
-onready var weapon2_timer = $Weapon2Timer
-onready var weapon2_area = $Weapon2Area
-onready var weapon2_offset_timer = $Weapon2OffsetTimer
-onready var weapon2_hurt_animation_player = $Weapon2Area/Weapon2HurtAnimationPlayer
+onready var weapon2 = $PosNode/Weapon2Area/Weapon2
+onready var weapon2_timer = $PosNode/Weapon2Timer
+onready var weapon2_area = $PosNode/Weapon2Area
+onready var weapon2_offset_timer = $PosNode/Weapon2OffsetTimer
+onready var weapon2_hurt_animation_player = $PosNode/Weapon2Area/Weapon2HurtAnimationPlayer
 var weapon2_health = 10
 
-onready var barrier_area = $BarrierArea
-onready var barrier_hurt_animation_player = $BarrierArea/BarrierHurtAnimationPlayer
+onready var barrier_area = $PosNode/BarrierArea
+onready var barrier_hurt_animation_player = $PosNode/BarrierArea/BarrierHurtAnimationPlayer
 
 func disable_barrier_if_weaponless():
 	if get_weapon1_health() <= 0 and get_weapon2_health() <= 0:
@@ -68,6 +68,16 @@ func enable_barrier():
 		if i is CollisionShape2D:
 			i.set_deferred("disabled",false)
 
+func disable_weak_spot():
+	for i in weak_spot.get_children():
+		if i is CollisionShape2D:
+			i.set_deferred("disabled",true)
+
+func enable_weak_spot():
+	for i in weak_spot.get_children():
+		if i is CollisionShape2D:
+			i.set_deferred("disabled",false)
+
 func _ready():
 	start()
 
@@ -81,6 +91,7 @@ func set_wait(value):
 
 func set_weak_spot_health(value):
 	if value <= 0:
+		disable_weak_spot()
 		ship_destroyed()
 		pass
 	weak_spot_health = value

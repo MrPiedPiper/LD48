@@ -4,26 +4,10 @@
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://Weapons/BasicWeapon/BasicWeapon.tscn" type="PackedScene" id=3]
 
-[sub_resource type="Animation" id=1]
-resource_name = "HurtFlash"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
-}
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 14, 15 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 8, 8 )
-
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "HurtFlash"
 length = 0.1
 tracks/0/type = "value"
@@ -39,7 +23,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "HurtFlash"
 length = 0.1
 tracks/0/type = "value"
@@ -55,8 +39,24 @@ tracks/0/keys = {
 "values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="CapsuleShape2D" id=5]
-radius = 32.0
+[sub_resource type="Animation" id=4]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="CapsuleShape2D" id=7]
+radius = 73.129
+height = 65.212
 
 [sub_resource type="Animation" id=6]
 length = 0.1
@@ -65,81 +65,88 @@ length = 0.1
 pause_mode = 1
 script = ExtResource( 1 )
 
-[node name="MainSprite" type="Sprite" parent="."]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
+[node name="PosNode" type="Node2D" parent="."]
 
-[node name="WeakSpot" type="Area2D" parent="." groups=[
-"Enemy",
-]]
+[node name="Weapon1Timer" type="Timer" parent="PosNode"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WeakSpot"]
+[node name="Weapon2Timer" type="Timer" parent="PosNode"]
 
-[node name="Sprite" type="Sprite" parent="WeakSpot"]
-position = Vector2( 9.53674e-07, -9.53674e-07 )
-scale = Vector2( 0.3125, 0.15625 )
-texture = ExtResource( 2 )
-
-[node name="WeakSpotHurtAnimationPlayer" type="AnimationPlayer" parent="WeakSpot"]
-anims/HurtFlash = SubResource( 1 )
-
-[node name="Weapon1Timer" type="Timer" parent="."]
-
-[node name="Weapon2Timer" type="Timer" parent="."]
-
-[node name="Weapon1Area" type="Area2D" parent="." groups=[
+[node name="Weapon1Area" type="Area2D" parent="PosNode" groups=[
 "Enemy",
 ]]
 position = Vector2( -17.294, -28.116 )
 
-[node name="Weapon1" parent="Weapon1Area" instance=ExtResource( 3 )]
+[node name="Weapon1" parent="PosNode/Weapon1Area" instance=ExtResource( 3 )]
 is_player = false
+bullet_speed = 75
 
-[node name="Weapon1Sprite" type="Sprite" parent="Weapon1Area"]
+[node name="Weapon1Sprite" type="Sprite" parent="PosNode/Weapon1Area"]
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon1Area"]
-shape = SubResource( 2 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PosNode/Weapon1Area"]
+shape = SubResource( 1 )
 
-[node name="Weapon1AnimationPlayer" type="AnimationPlayer" parent="Weapon1Area"]
+[node name="Weapon1AnimationPlayer" type="AnimationPlayer" parent="PosNode/Weapon1Area"]
 
-[node name="Weapon1HurtAnimationPlayer" type="AnimationPlayer" parent="Weapon1Area"]
-anims/HurtFlash = SubResource( 3 )
+[node name="Weapon1HurtAnimationPlayer" type="AnimationPlayer" parent="PosNode/Weapon1Area"]
+anims/HurtFlash = SubResource( 2 )
 
-[node name="Weapon2Area" type="Area2D" parent="." groups=[
+[node name="Weapon2Area" type="Area2D" parent="PosNode" groups=[
 "Enemy",
 ]]
 position = Vector2( -17.294, 28.116 )
 
-[node name="Weapon2" parent="Weapon2Area" instance=ExtResource( 3 )]
+[node name="Weapon2" parent="PosNode/Weapon2Area" instance=ExtResource( 3 )]
 is_player = false
+bullet_speed = 75
+shoot_delay = 1.0
 
-[node name="Weapon2Sprite" type="Sprite" parent="Weapon2Area"]
+[node name="Weapon2Sprite" type="Sprite" parent="PosNode/Weapon2Area"]
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon2Area"]
-shape = SubResource( 2 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PosNode/Weapon2Area"]
+shape = SubResource( 1 )
 
-[node name="Weapon2AnimationPlayer" type="AnimationPlayer" parent="Weapon2Area"]
+[node name="Weapon2AnimationPlayer" type="AnimationPlayer" parent="PosNode/Weapon2Area"]
 
-[node name="Weapon2HurtAnimationPlayer" type="AnimationPlayer" parent="Weapon2Area"]
-anims/HurtFlash = SubResource( 4 )
+[node name="Weapon2HurtAnimationPlayer" type="AnimationPlayer" parent="PosNode/Weapon2Area"]
+anims/HurtFlash = SubResource( 3 )
 
-[node name="BarrierArea" type="Area2D" parent="." groups=[
+[node name="MainSprite" type="Sprite" parent="PosNode"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="WeakSpot" type="Area2D" parent="PosNode" groups=[
 "Enemy",
 ]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BarrierArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PosNode/WeakSpot"]
+
+[node name="Sprite" type="Sprite" parent="PosNode/WeakSpot"]
+position = Vector2( 9.53674e-07, -9.53674e-07 )
+scale = Vector2( 0.3125, 0.15625 )
+texture = ExtResource( 2 )
+
+[node name="WeakSpotHurtAnimationPlayer" type="AnimationPlayer" parent="PosNode/WeakSpot"]
+anims/HurtFlash = SubResource( 4 )
+
+[node name="BarrierArea" type="Area2D" parent="PosNode" groups=[
+"Enemy",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PosNode/BarrierArea"]
 position = Vector2( 16, 0 )
 rotation = 1.5708
-shape = SubResource( 5 )
+shape = SubResource( 7 )
 
-[node name="BarrierHurtAnimationPlayer" type="AnimationPlayer" parent="BarrierArea"]
+[node name="BarrierHurtAnimationPlayer" type="AnimationPlayer" parent="PosNode/BarrierArea"]
 anims/HurtFlash = SubResource( 6 )
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="BarrierSprite" type="Sprite" parent="PosNode/BarrierArea"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="PosNode"]
 position = Vector2( 11.9693, 0 )
 emitting = false
 local_coords = false
@@ -152,8 +159,10 @@ color = Color( 1, 0.305882, 0, 1 )
 hue_variation = 0.15
 hue_variation_random = 1.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PosNode"]
 
-[connection signal="area_entered" from="WeakSpot" to="." method="_on_WeakSpot_area_entered"]
-[connection signal="area_entered" from="Weapon1Area" to="." method="_on_Weapon1Area_area_entered"]
-[connection signal="area_entered" from="Weapon2Area" to="." method="_on_Weapon2Area_area_entered"]
+[connection signal="timeout" from="PosNode/Weapon1Timer" to="." method="_on_Weapon1Timer_timeout"]
+[connection signal="timeout" from="PosNode/Weapon2Timer" to="." method="_on_Weapon2Timer_timeout"]
+[connection signal="area_entered" from="PosNode/Weapon1Area" to="." method="_on_Weapon1Area_area_entered"]
+[connection signal="area_entered" from="PosNode/Weapon2Area" to="." method="_on_Weapon2Area_area_entered"]
+[connection signal="area_entered" from="PosNode/WeakSpot" to="." method="_on_WeakSpot_area_entered"]

@@ -1,6 +1,6 @@
 extends "res://Bosses/BaseBoss/BaseBoss.gd"
 
-onready var barrier_sprite = $BarrierArea/Sprite
+onready var barrier_sprite = $PosNode/BarrierArea/BarrierSprite
 
 func set_weapon1_health(value):
 	.set_weapon1_health(value)
@@ -22,8 +22,8 @@ func enable_barrier():
 
 func ship_destroyed():
 	.ship_destroyed()
-	$AnimationPlayer.play("Death")
-	$CPUParticles2D.emitting = true
+	$PosNode/AnimationPlayer.play("Death")
+	$PosNode/CPUParticles2D.emitting = true
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "Death":
