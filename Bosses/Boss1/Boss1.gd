@@ -1,6 +1,6 @@
 extends "res://Bosses/BaseBoss/BaseBoss.gd"
 
-onready var barrier_sprite = $PosNode/BarrierArea/Sprite
+onready var barrier_sprite = $PosNode/BarrierArea/BarrierSprite
 
 func set_weapon1_health(value):
 	.set_weapon1_health(value)

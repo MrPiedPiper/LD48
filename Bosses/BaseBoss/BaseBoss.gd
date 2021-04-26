@@ -3,7 +3,7 @@ extends Node2D
 var phase = 1
 var _is_waiting = true
 
-onready var weak_spot = $PosNode/PosNode/WeakSpot
+onready var weak_spot = $PosNode/WeakSpot
 onready var weak_spot_hurt_animation_player = $PosNode/WeakSpot/WeakSpotHurtAnimationPlayer
 var weak_spot_health = 10
 
@@ -68,6 +68,16 @@ func enable_barrier():
 		if i is CollisionShape2D:
 			i.set_deferred("disabled",false)
 
+func disable_weak_spot():
+	for i in weak_spot.get_children():
+		if i is CollisionShape2D:
+			i.set_deferred("disabled",true)
+
+func enable_weak_spot():
+	for i in weak_spot.get_children():
+		if i is CollisionShape2D:
+			i.set_deferred("disabled",false)
+
 func _ready():
 	start()
 
@@ -81,6 +91,7 @@ func set_wait(value):
 
 func set_weak_spot_health(value):
 	if value <= 0:
+		disable_weak_spot()
 		ship_destroyed()
 		pass
 	weak_spot_health = value
