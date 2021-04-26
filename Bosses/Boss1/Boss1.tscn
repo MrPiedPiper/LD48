@@ -5,7 +5,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://sprites/enemy_ship.png" type="Texture" id=4]
 
-[sub_resource type="CapsuleShape2D" id=7]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 14.0
 height = 32.0
 
@@ -15,7 +15,7 @@ extents = Vector2( 8, 8 )
 [sub_resource type="CapsuleShape2D" id=3]
 radius = 46.735
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "HurtFlash"
 length = 0.1
 tracks/0/type = "value"
@@ -31,7 +31,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "Death"
 length = 5.0
 tracks/0/type = "value"
@@ -60,7 +60,7 @@ position = Vector2( -6, 0 )
 
 [node name="CollisionShape2D" parent="WeakSpot" index="0"]
 position = Vector2( 15, 0 )
-shape = SubResource( 7 )
+shape = SubResource( 1 )
 
 [node name="Weapon1Timer" parent="." index="2"]
 wait_time = 2.0
@@ -93,10 +93,10 @@ scale = Vector2( 1.3125, 1 )
 texture = ExtResource( 3 )
 
 [node name="BarrierHurtAnimationPlayer" parent="BarrierArea" index="2"]
-anims/HurtFlash = SubResource( 5 )
+anims/HurtFlash = SubResource( 4 )
 
 [node name="AnimationPlayer" parent="." index="8"]
-anims/Death = SubResource( 6 )
+anims/Death = SubResource( 5 )
 
 [connection signal="timeout" from="Weapon1Timer" to="." method="_on_Weapon1Timer_timeout"]
 [connection signal="timeout" from="Weapon2Timer" to="." method="_on_Weapon2Timer_timeout"]

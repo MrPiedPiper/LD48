@@ -10,6 +10,7 @@
 [node name="Main" type="Node2D" groups=[
 "World",
 ]]
+pause_mode = 1
 script = ExtResource( 5 )
 
 [node name="Background" type="ColorRect" parent="."]
@@ -57,6 +58,7 @@ __meta__ = {
 position = Vector2( 320, 0 )
 
 [node name="Boss1" parent="." instance=ExtResource( 4 )]
+pause_mode = 0
 position = Vector2( 270, 75 )
 
 [connection signal="dialog_done" from="GUI/DialogBox" to="." method="_on_DialogBox_dialog_done"]
