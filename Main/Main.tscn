@@ -22,13 +22,13 @@ __meta__ = {
 }
 
 [node name="StarParticles" type="CPUParticles2D" parent="."]
-position = Vector2( 320, 90 )
+position = Vector2( 320, 72 )
 rotation = -3.14159
 amount = 200
 lifetime = 7.0
 preprocess = 7.0
 emission_shape = 2
-emission_rect_extents = Vector2( 1, 90 )
+emission_rect_extents = Vector2( 1, 75 )
 spread = 0.0
 gravity = Vector2( 0, 0 )
 initial_velocity = 100.0
