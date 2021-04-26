@@ -54,6 +54,7 @@ position = Vector2( -17.294, 28.116 )
 
 [node name="Weapon2" parent="Weapon2Area" instance=ExtResource( 3 )]
 is_player = false
+testdelay = 0.25
 
 [node name="Weapon2Sprite" type="Sprite" parent="Weapon2Area"]
 scale = Vector2( 0.25, 0.25 )

@@ -86,8 +86,6 @@ dialog = "Even more, [wave][rainbow]wow![/rainbow][/wave]"
 speaking = 0
 left_id = 0
 
-[node name="DialogItem2" parent="Dialogs/Dialog4" instance=ExtResource( 2 )]
-
 [node name="Tools" type="Node" parent="."]
 
 [node name="TextTester" type="Node" parent="Tools"]

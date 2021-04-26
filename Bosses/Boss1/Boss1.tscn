@@ -22,8 +22,20 @@ position = Vector2( -6, 0 )
 [node name="CollisionShape2D" parent="WeakSpot" index="0"]
 shape = SubResource( 1 )
 
+[node name="Weapon1Timer" parent="." index="2"]
+wait_time = 2.0
+
+[node name="Weapon2Timer" parent="." index="3"]
+wait_time = 2.0
+
+[node name="Weapon1" parent="Weapon1Area" index="0"]
+bullet_speed = 75
+
 [node name="CollisionShape2D" parent="Weapon1Area" index="2"]
 shape = SubResource( 2 )
+
+[node name="Weapon2" parent="Weapon2Area" index="0"]
+bullet_speed = 75
 
 [node name="CollisionShape2D" parent="Weapon2Area" index="2"]
 shape = SubResource( 2 )

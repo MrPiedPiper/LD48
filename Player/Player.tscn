@@ -63,6 +63,7 @@ texture = ExtResource( 1 )
 hframes = 3
 
 [node name="BasicWeapon" parent="." instance=ExtResource( 3 )]
+shoot_cooldown = 0.1
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( 2.51984, 3.70102 )
