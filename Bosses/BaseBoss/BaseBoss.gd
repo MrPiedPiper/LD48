@@ -4,21 +4,25 @@ var phase = 1
 var _is_waiting = true
 
 onready var weak_spot = $WeakSpot
+onready var weak_spot_hurt_animation_player = $WeakSpot/WeakSpotHurtAnimationPlayer
 var weak_spot_health = 10
 
 onready var weapon1 = $Weapon1Area/Weapon1
 onready var weapon1_timer = $Weapon1Timer
 onready var weapon1_area = $Weapon1Area
 onready var weapon1_offset_timer = $Weapon1OffsetTimer
+onready var weapon1_hurt_animation_player = $Weapon1Area/Weapon1HurtAnimationPlayer
 var weapon1_health = 10
 
 onready var weapon2 = $Weapon2Area/Weapon2
 onready var weapon2_timer = $Weapon2Timer
 onready var weapon2_area = $Weapon2Area
 onready var weapon2_offset_timer = $Weapon2OffsetTimer
+onready var weapon2_hurt_animation_player = $Weapon2Area/Weapon2HurtAnimationPlayer
 var weapon2_health = 10
 
 onready var barrier_area = $BarrierArea
+onready var barrier_hurt_animation_player = $BarrierArea/BarrierHurtAnimationPlayer
 
 func disable_barrier_if_weaponless():
 	if get_weapon1_health() <= 0 and get_weapon2_health() <= 0:
@@ -122,12 +126,15 @@ func _on_Weapon2Timer_timeout():
 
 func _on_Weapon1Area_area_entered(area):
 	if area.is_in_group("PlayerBullet"):
+		weapon1_hurt_animation_player.play("HurtFlash")
 		set_weapon1_health(get_weapon1_health()-1)
 
 func _on_Weapon2Area_area_entered(area):
 	if area.is_in_group("PlayerBullet"):
+		weapon2_hurt_animation_player.play("HurtFlash")
 		set_weapon2_health(get_weapon2_health()-1)
 
 func _on_WeakSpot_area_entered(area):
 	if area.is_in_group("PlayerBullet"):
+		weak_spot_hurt_animation_player.play("HurtFlash")
 		set_weak_spot_health(get_weak_spot_health()-1)
