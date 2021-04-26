@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Bosses/BaseBoss/BaseBoss.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Weapons/BasicWeapon/BasicWeapon.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 8 )
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 32.0
+
+[node name="BaseBoss" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="MainSprite" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="WeakSpot" type="Area2D" parent="." groups=[
+"Enemy",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeakSpot"]
+
+[node name="Sprite" type="Sprite" parent="WeakSpot"]
+position = Vector2( 9.53674e-07, -9.53674e-07 )
+scale = Vector2( 0.3125, 0.15625 )
+texture = ExtResource( 2 )
+
+[node name="Weapon1Timer" type="Timer" parent="."]
+
+[node name="Weapon2Timer" type="Timer" parent="."]
+
+[node name="Weapon1Area" type="Area2D" parent="." groups=[
+"Enemy",
+]]
+position = Vector2( -17.294, -28.116 )
+
+[node name="Weapon1" parent="Weapon1Area" instance=ExtResource( 3 )]
+is_player = false
+
+[node name="Weapon1Sprite" type="Sprite" parent="Weapon1Area"]
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon1Area"]
+shape = SubResource( 1 )
+
+[node name="Weapon2Area" type="Area2D" parent="." groups=[
+"Enemy",
+]]
+position = Vector2( -17.294, 28.116 )
+
+[node name="Weapon2" parent="Weapon2Area" instance=ExtResource( 3 )]
+is_player = false
+
+[node name="Weapon2Sprite" type="Sprite" parent="Weapon2Area"]
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon2Area"]
+shape = SubResource( 1 )
+
+[node name="BarrierArea" type="Area2D" parent="." groups=[
+"Enemy",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BarrierArea"]
+position = Vector2( 16, 0 )
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="Weapon1Area" to="." method="_on_Weapon1Area_area_entered"]
+[connection signal="area_entered" from="Weapon2Area" to="." method="_on_Weapon2Area_area_entered"]

@@ -14,13 +14,13 @@ func _process(delta):
 # If the Enemy's armor is less than 0, delete the enemy.
 # Update the score
 func _on_GreenAlien_area_entered(area):
-	area.queue_free()
-	ARMOR -= 1
-	if ARMOR <= 0:
-		var main = get_tree().current_scene
-		if main.is_in_group("World"):
-			main.score += 10
-		queue_free()
+	if area.is_in_group("PlayerBullet"):
+		ARMOR -= 1
+		if ARMOR <= 0:
+			var main = get_tree().current_scene
+			if main.is_in_group("World"):
+				main.score += 10
+			queue_free()
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
