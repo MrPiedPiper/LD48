@@ -4,6 +4,7 @@ export(int) var SPEED = 20
 export(int) var ARMOR = 2
 
 onready var animationPlayer = $AnimationPlayer
+const ExplosionEffect = preload("res://ExplosionEffect.tscn")
 
 # Make the alien move left
 func _process(delta):
@@ -30,8 +31,8 @@ func _exit_tree():
 	# get the current scene tree
 	var main = get_tree().current_scene
 	# instance the explosionEffect as a variable
-	#var explosionEffect = ExplosionEffect.instance()
+	var explosionEffect = ExplosionEffect.instance()
 	# add the explosionEffect to the scene tree
-	#main.add_child(explosionEffect)
+	main.add_child(explosionEffect)
 	# set the explosionEffect to the global position
-	#explosionEffect.global_position = global_position
+	explosionEffect.global_position = global_position
