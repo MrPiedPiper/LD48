@@ -11,7 +11,7 @@ signal dialog_done
 
 var dialog_id = -1
 
-onready var dialog_label = $DialogContainer/Dialog
+onready var dialog_label = $DialogContainer/HBoxContainer/Dialog
 onready var portrait_left = $Portraits/PortraitLeft
 onready var portrait_right = $Portraits/PortraitRight
 onready var dialog_timer = $DialogTimer
@@ -20,7 +20,7 @@ onready var auto_timer = $AutoTimer
 var curr_page = 0
 var auto = false
 var renamedialog = -1
-var is_done = false
+var is_done = true
 
 #func _display_test_dialog(value):
 #	if not Engine.editor_hint: return
@@ -39,6 +39,7 @@ func start_dialog(id,auto=false):
 	curr_page = 0
 	dialog_id = id
 	GameManager.is_dialog_open = true
+	is_done = false
 	self.auto = auto
 	update_dialog()
 
@@ -52,7 +53,7 @@ func clear_dialog():
 	portrait_left.texture = null
 	portrait_right.texture = null
 	auto = false
-	is_done = false
+	is_done = true
 
 func _init():
 #	GameManager.is_dialog_open = true
@@ -65,11 +66,10 @@ func _ready():
 #	start_dialog(0)
 
 func next_page():
-	if curr_page >= len(renamedialog.get_children()):
+	if is_done or curr_page >= len(renamedialog.get_children())-1:
 		return false
 	dialog_label.visible_characters = 0
 	curr_page += 1
-	print(str("Playing page ", curr_page))
 	update_dialog()
 	return true
 
@@ -113,6 +113,9 @@ func update_dialog():
 		portrait_right.modulate = color_see_through
 	elif talking == 1:
 		portrait_left.modulate = color_see_through
+		portrait_right.modulate = Color.white
+	elif talking == 2:
+		portrait_left.modulate = Color.white
 		portrait_right.modulate = Color.white
 
 #func parse_tags(value:String):
@@ -180,9 +183,8 @@ func dialog_press():
 
 func dialog_progress():
 	var is_dialog_progressing = next_page()
-	if not is_dialog_progressing:
+	if !is_dialog_progressing:
 		emit_signal("dialog_done",dialog_id)
-		is_done = true
 		clear_dialog()
 
 func _input(event):

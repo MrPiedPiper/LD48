@@ -14,4 +14,5 @@ func set_score(value):
 
 
 func _on_DialogBox_dialog_done(id):
-	print(str("finished dialog ",id))
+#	print(str("finished dialog ",id))
+	pass

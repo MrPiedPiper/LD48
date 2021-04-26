@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Main/DialogScenes/Dialog/Dialog.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/DialogScenes/DialogItem/DialogItem.tscn" type="PackedScene" id=2]
@@ -8,10 +8,15 @@
 [ext_resource path="res://Main/DialogScenes/DialogGroups/TextTester.gd" type="Script" id=6]
 [ext_resource path="res://sprites/player_dialogue.png" type="Texture" id=7]
 [ext_resource path="res://Main/DialogScenes/DialogGroups/Dialogs.gd" type="Script" id=8]
+[ext_resource path="res://sprites/robot_dialogue.png" type="Texture" id=9]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 32, 32 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 9 )
+region = Rect2( 32, 0, 32, 32 )
 
 [node name="DialogGroups" type="Node"]
 script = ExtResource( 3 )
@@ -40,30 +45,6 @@ right_id = 0
 right_frame = 1
 text_speed = 0.5
 
-[node name="Dialog2" parent="Dialogs" instance=ExtResource( 1 )]
-id = 1
-
-[node name="DialogItem" parent="Dialogs/Dialog2" instance=ExtResource( 2 )]
-left_id = 0
-left_frame = 3
-right_id = 0
-right_frame = 2
-text_speed = 0.002
-
-[node name="DialogItem2" parent="Dialogs/Dialog2" instance=ExtResource( 2 )]
-dialog = "This is another dialog"
-speaking = 0
-left_id = 0
-right_id = 0
-right_frame = 1
-text_speed = 0.3
-
-[node name="DialogItem3" parent="Dialogs/Dialog2" instance=ExtResource( 2 )]
-dialog = "An example message for the game"
-speaking = 1
-right_id = 0
-text_speed = 1.0
-
 [node name="Dialog3" parent="Dialogs" instance=ExtResource( 1 )]
 id = 2
 
@@ -75,8 +56,20 @@ left_frame = 2
 text_speed = 0.25
 
 [node name="DialogItem2" parent="Dialogs/Dialog3" instance=ExtResource( 2 )]
-dialog = "This is the end"
+dialog = "This is the blue guy"
+speaking = 1
+left_id = 0
+right_id = 1
 text_speed = 0.02
+
+[node name="DialogItem3" parent="Dialogs/Dialog3" instance=ExtResource( 2 )]
+dialog = "Whaaaaaaaaat"
+speaking = 2
+left_id = 0
+left_frame = 1
+right_id = 2
+right_frame = 1
+text_speed = 0.2
 
 [node name="Dialog4" parent="Dialogs" instance=ExtResource( 1 )]
 id = 3
@@ -92,8 +85,12 @@ left_id = 0
 script = ExtResource( 6 )
 chars = ExtResource( 5 )
 dialog_item_template = ExtResource( 2 )
-add_to_id = 3
+add_to_id = 2
 left_id = 0
+left_frame = 1
+right_id = 2
+right_frame = 1
+text_speed = 0.2
 
 [node name="DialogBox" type="Control" parent="Tools/TextTester"]
 anchor_top = 0.75
@@ -126,6 +123,7 @@ __meta__ = {
 }
 
 [node name="PortraitLeft" type="TextureRect" parent="Tools/TextTester/DialogBox/Portraits"]
+modulate = Color( 0.5, 0.5, 0.5, 1 )
 margin_left = 4.0
 margin_right = 316.0
 margin_bottom = 64.0
@@ -139,7 +137,6 @@ __meta__ = {
 }
 
 [node name="PortraitRight" type="TextureRect" parent="Tools/TextTester/DialogBox/Portraits"]
-modulate = Color( 0.5, 0.5, 0.5, 1 )
 margin_left = 252.0
 margin_right = 316.0
 margin_bottom = 64.0
@@ -148,6 +145,7 @@ rect_min_size = Vector2( 64, 64 )
 mouse_filter = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+texture = SubResource( 2 )
 stretch_mode = 5
 flip_h = true
 __meta__ = {
@@ -179,13 +177,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 custom_fonts/normal_font = ExtResource( 4 )
 bbcode_enabled = true
-bbcode_text = "Even more, [wave][rainbow]wow![/rainbow][/wave]"
-visible_characters = 15
-text = "Even more, wow!"
+bbcode_text = "Whaaaaaaaaat"
+visible_characters = 12
+text = "Whaaaaaaaaat"
 fit_content_height = true
 scroll_active = false
 
 [node name="DialogTimer" type="Timer" parent="Tools/TextTester/DialogBox"]
-wait_time = 0.125
+wait_time = 0.2
 
 [connection signal="timeout" from="Tools/TextTester/DialogBox/DialogTimer" to="Tools/TextTester" method="_on_DialogTimer_timeout"]
