@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/mixkit-arcade-game-explosion-1699.wav-073cd42308f957a2d081e63dfe9d92ac.sample"
+
+[deps]
+
+source_file="res://Music/mixkit-arcade-game-explosion-1699.wav"
+dest_files=[ "res://.import/mixkit-arcade-game-explosion-1699.wav-073cd42308f957a2d081e63dfe9d92ac.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -40,10 +40,7 @@ size_flags_vertical = 11
 custom_fonts/font = ExtResource( 1 )
 text = "Move with WASD or Arrow Keys
 Shoot enemies with SPACEBAR
-Click or press SPACEBAR to skip dialogue
-
-Dying will return you to
-the last checkpoint"
+Right click to progress dialogue"
 align = 1
 valign = 1
 __meta__ = {

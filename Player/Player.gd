@@ -9,6 +9,8 @@ var curr_menu = null
 var velocity = Vector2.ZERO
 var friction = 25.0
 
+onready var audioStreamPlayer2D = $AudioStreamPlayer2D
+
 # when the node and it's children are ready, creates a variable, animationPlayer, that is the AnimationPlayer
 onready var animationPlayer = $AnimationPlayer
 
@@ -50,6 +52,7 @@ func _process(delta):
 func _input(event):
 	if Input.is_action_just_pressed("input_a"):
 		$BasicWeapon.fire()
+		audioStreamPlayer2D.play()
 
 
 func _on_Player_area_entered(area):
