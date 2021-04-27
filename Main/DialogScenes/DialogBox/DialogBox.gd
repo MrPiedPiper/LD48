@@ -19,7 +19,7 @@ onready var auto_timer = $AutoTimer
 
 var curr_page = 0
 var auto = false
-var renamedialog = -1
+var renamedialog = null
 var is_done = true
 
 #func _display_test_dialog(value):
@@ -184,9 +184,9 @@ func dialog_press():
 func dialog_progress():
 	var is_dialog_progressing = next_page()
 	if !is_dialog_progressing:
-		emit_signal("dialog_done",dialog_id)
 		clear_dialog()
+		emit_signal("dialog_done",dialog_id)
 
 func _input(event):
-	if not is_done and not auto and GameManager.is_dialog_open and event.is_action("input_a") and not event.is_action_pressed("input_a"):
+	if not is_done and not auto and GameManager.is_dialog_open and event.is_action("input_b") and event.pressed == true and not event.is_action_pressed("input_a"):
 		dialog_press()

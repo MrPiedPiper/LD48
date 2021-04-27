@@ -26,3 +26,11 @@ func spawn_enemy():
 # When the timer runs out, spawn an enemy
 func _on_Timer_timeout():
 	spawn_enemy()
+
+func start(freq,types):
+	$Timer.wait_time = freq
+	$Timer.start()
+	#Later, add varaitions.
+
+func stop():
+	$Timer.stop()

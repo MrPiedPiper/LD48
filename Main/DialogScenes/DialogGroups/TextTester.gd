@@ -5,6 +5,7 @@ enum Sides {
 	NONE = -1,
 	LEFT = 0,
 	RIGHT = 1,
+	BOTH = 2,
 }
 
 export(PackedScene) var chars
@@ -77,6 +78,9 @@ func update_speaking(value):
 		portrait_right.modulate = color_see_through
 	elif value == Sides.RIGHT:
 		portrait_left.modulate = color_see_through
+		portrait_right.modulate = Color.white
+	elif value == Sides.BOTH:
+		portrait_left.modulate = Color.white
 		portrait_right.modulate = Color.white
 	speaking = value
 

@@ -1,5 +1,7 @@
 extends Node2D
 
+signal boss_defeated
+
 var phase = 1
 var _is_waiting = true
 
@@ -78,9 +80,6 @@ func enable_weak_spot():
 		if i is CollisionShape2D:
 			i.set_deferred("disabled",false)
 
-func _ready():
-	start()
-
 func start():
 	_is_waiting = false
 	weapon1_timer.start()
@@ -93,7 +92,6 @@ func set_weak_spot_health(value):
 	if value <= 0:
 		disable_weak_spot()
 		ship_destroyed()
-		pass
 	weak_spot_health = value
 
 func ship_destroyed():

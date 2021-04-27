@@ -21,6 +21,7 @@ tracks/0/keys = {
 
 [node name="GreenAlien" type="Area2D" groups=[
 "Enemy",
+"Grunt",
 ]]
 script = ExtResource( 2 )
 

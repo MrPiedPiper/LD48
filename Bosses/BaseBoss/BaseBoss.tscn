@@ -54,7 +54,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="CapsuleShape2D" id=7]
+[sub_resource type="CapsuleShape2D" id=5]
 radius = 73.129
 height = 65.212
 
@@ -138,7 +138,7 @@ anims/HurtFlash = SubResource( 4 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PosNode/BarrierArea"]
 position = Vector2( 16, 0 )
 rotation = 1.5708
-shape = SubResource( 7 )
+shape = SubResource( 5 )
 
 [node name="BarrierHurtAnimationPlayer" type="AnimationPlayer" parent="PosNode/BarrierArea"]
 anims/HurtFlash = SubResource( 6 )

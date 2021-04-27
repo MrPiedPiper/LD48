@@ -1,18 +1,64 @@
 extends Node2D
 
 var score = 0 setget set_score
+var is_stopping = false
 
 onready var scoreLabel = $GUI/ScoreLabel
+onready var enemy_spawner = $EnemySpawner
+onready var flow_manager = $FlowManager
 
 func set_score(value):
 	score = value
+	GameManager.score = score
 	scoreLabel.text = "Score = " + str(score)
-	if score == 10:
-		$GUI/DialogBox.start_dialog(2,true)
-	elif score == 20:
-		$GUI/DialogBox.start_dialog(3,false)
 
+func _process(delta):
+	var enemies = get_tree().get_nodes_in_group("Enemy")
+	var enemy_bullets = get_tree().get_nodes_in_group("EnemyBullet")
+	if is_stopping and len(enemies) == 0 and len(enemy_bullets) == 0:
+		is_stopping = false
+		flow_manager.finish_wave()
 
 func _on_DialogBox_dialog_done(id):
-#	print(str("finished dialog ",id))
-	pass
+	flow_manager.dialog_done()
+
+func summon_boss(id):
+	if id == 1:
+		var boss_scene = load("res://Bosses/Boss1/Boss1.tscn")
+		var curr_boss = boss_scene.instance()
+		curr_boss.connect("boss_defeated",self,"_on_Boss1_boss_defeated")
+		curr_boss.global_position = Vector2(270,68)
+		print("pos set")
+		add_child(curr_boss)
+
+func _ready():
+	flow_manager.start()
+
+#on boss defeated trigger FlowManager to progress, kill all enemy grunts, and all enemy bullets.
+
+func _on_FlowManager_spawn_enemies(wave_info):
+	enemy_spawner.start(wave_info.frequency,wave_info.types)
+
+func _on_FlowManager_stop_enemies():
+	enemy_spawner.stop()
+	is_stopping = true
+
+func _on_Boss1_boss_defeated():
+	clear_screen()
+	flow_manager.boss_done()
+
+func clear_screen():
+	for i in get_tree().get_nodes_in_group("Grunt"):
+		if i.is_in_group("Enemy"):
+			i.queue_free()
+	for i in get_tree().get_nodes_in_group("Bullet"):
+		i.queue_free()
+
+func _on_FlowManager_start_dialog(wave_info,dialog_id,is_auto):
+	$GUI/DialogBox.start_dialog(dialog_id,is_auto)
+
+func _on_FlowManager_summon_boss(id):
+	summon_boss(id)
+
+func _on_FlowManager_clear_stuff_from_screen():
+	clear_screen()

@@ -16,6 +16,10 @@ func disable_barrier():
 	.disable_barrier()
 	barrier_sprite.hide()
 
+func start():
+	.start()
+	$PosNode/AnimationPlayer.play("Hover")
+
 func enable_barrier():
 	.enable_barrier()
 	barrier_sprite.show()
@@ -28,3 +32,6 @@ func ship_destroyed():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "Death":
 		queue_free()
+		emit_signal("boss_defeated")
+	elif anim_name == "Spawn":
+		start()
