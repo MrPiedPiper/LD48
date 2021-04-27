@@ -32,3 +32,4 @@ func open_HowToPlay():
 	curr_menu = menu_template.instance()
 	var main = get_tree().current_scene
 	main.get_node("GUI").add_child(curr_menu)
+

@@ -4,6 +4,8 @@ export var speed = 30.0
 export var max_speed = 100.0
 export var ship_size = Vector2(16,16)
 
+var curr_menu = null
+
 var velocity = Vector2.ZERO
 var friction = 25.0
 
@@ -54,3 +56,10 @@ func _on_Player_area_entered(area):
 	if area.is_in_group("PlayerBullet"): return
 	area.queue_free()
 	queue_free()
+	open_menu()
+	
+func open_menu():
+	var menu_template = load("res://DeathMenu.tscn")
+	curr_menu = menu_template.instance()
+	var main = get_tree().current_scene
+	main.get_node("GUI").add_child(curr_menu)
