@@ -20,9 +20,7 @@ func resume_game():
 	
 
 func _on_Play_button_up():
-	yield(get_tree(),"idle_frame")
-	resume_game()
-	close_menu()
+	get_tree().reload_current_scene()
 
 func _on_HowToPlayButton_button_up():
 	open_HowToPlay()
