@@ -40,7 +40,7 @@ margin_right = 320.0
 margin_bottom = 45.0
 size_flags_vertical = 14
 custom_fonts/font = ExtResource( 1 )
-text = "DEEP SPACE GALACTIC"
+text = "DEEP SPACE ONE"
 align = 1
 uppercase = true
 
