@@ -115,5 +115,6 @@ valign = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="button_up" from="MarginContainer/VBoxContainer/PlayButton" to="." method="_on_Play_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/MarginContainer/HowToPlayButton" to="." method="_on_HowToPlayButton_button_up"]

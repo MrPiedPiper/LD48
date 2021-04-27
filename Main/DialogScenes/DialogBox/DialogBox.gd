@@ -190,3 +190,6 @@ func dialog_progress():
 func _input(event):
 	if not is_done and not auto and GameManager.is_dialog_open and event.is_action("input_b") and event.pressed == true and not event.is_action_pressed("input_a"):
 		dialog_press()
+	if event.is_action("skip") and event.pressed == true:
+			clear_dialog()
+			emit_signal("dialog_done",dialog_id)

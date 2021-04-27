@@ -52,7 +52,7 @@ func _process(delta):
 func _input(event):
 	if Input.is_action_just_pressed("input_a"):
 		$BasicWeapon.fire()
-		audioStreamPlayer2D.play()
+#		audioStreamPlayer2D.play()
 
 
 func _on_Player_area_entered(area):

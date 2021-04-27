@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Bosses/BaseBoss/BaseBoss.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Bosses/Boss1/Boss1.gd" type="Script" id=2]
@@ -135,4 +135,5 @@ autoplay = "Spawn"
 anims/Death = SubResource( 5 )
 anims/Hover = SubResource( 6 )
 anims/Spawn = SubResource( 7 )
+
 [connection signal="animation_finished" from="PosNode/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
