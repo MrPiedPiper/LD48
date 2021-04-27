@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/DialogScenes/DialogBox/DialogBox.tscn" type="PackedScene" id=2]
@@ -6,10 +6,12 @@
 [ext_resource path="res://Main/Main.gd" type="Script" id=5]
 [ext_resource path="res://EnemySpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Main/FlowManager/FlowManager.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Music/Retro Battle Theme #5 (looped).mp3" type="AudioStream" id=8]
 
 [node name="Main" type="Node2D" groups=[
 "World",
 ]]
+pause_mode = 1
 script = ExtResource( 5 )
 
 [node name="FlowManager" parent="." instance=ExtResource( 7 )]
@@ -45,6 +47,7 @@ position = Vector2( 0, 188 )
 [node name="GUI" type="Node" parent="."]
 
 [node name="ScoreLabel" type="Label" parent="GUI"]
+margin_top = 8.0
 margin_right = 68.0
 margin_bottom = 14.0
 custom_fonts/font = ExtResource( 3 )
@@ -63,4 +66,10 @@ position = Vector2( 320, 0 )
 [connection signal="start_dialog" from="FlowManager" to="." method="_on_FlowManager_start_dialog"]
 [connection signal="stop_enemies" from="FlowManager" to="." method="_on_FlowManager_stop_enemies"]
 [connection signal="summon_boss" from="FlowManager" to="." method="_on_FlowManager_summon_boss"]
+[node name="Boss1" parent="." instance=ExtResource( 4 )]
+position = Vector2( 270, 68 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
 [connection signal="dialog_done" from="GUI/DialogBox" to="." method="_on_DialogBox_dialog_done"]

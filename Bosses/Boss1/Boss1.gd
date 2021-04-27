@@ -2,6 +2,12 @@ extends "res://Bosses/BaseBoss/BaseBoss.gd"
 
 onready var barrier_sprite = $PosNode/BarrierArea/BarrierSprite
 
+# CHANGE THESE FOR HEALTH
+func _init():
+	weapon1_health = 50
+	weapon2_health = 50
+	weak_spot_health = 20
+
 func set_weapon1_health(value):
 	.set_weapon1_health(value)
 	if get_weapon1_health() <= 0:

@@ -11,6 +11,5 @@ one_shot = true
 
 [node name="TimerDelay" type="Timer" parent="."]
 one_shot = true
-
 [connection signal="timeout" from="TimerShoot" to="." method="_on_TimerShoot_timeout"]
 [connection signal="timeout" from="TimerDelay" to="." method="_on_TimerDelay_timeout"]

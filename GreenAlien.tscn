@@ -23,6 +23,7 @@ tracks/0/keys = {
 "Enemy",
 "Grunt",
 ]]
+pause_mode = 1
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

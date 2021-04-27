@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://fonts/retro_gaming/Retro Gaming.tres" type="DynamicFont" id=1]
+[ext_resource path="res://HowToPlay.gd" type="Script" id=2]
+[ext_resource path="res://sprites/button_texture.png" type="Texture" id=3]
+
+[node name="HowToPlay" type="MarginContainer"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 320.0
+margin_bottom = 180.0
+color = Color( 0.356863, 0.356863, 0.356863, 0.784314 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 320.0
+margin_bottom = 180.0
+custom_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 320.0
+margin_bottom = 172.0
+size_flags_vertical = 7
+custom_constants/separation = 16
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HowToPlayLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_right = 320.0
+margin_bottom = 140.0
+size_flags_vertical = 11
+custom_fonts/font = ExtResource( 1 )
+text = "Move with WASD or Arrow Keys
+Shoot enemies with SPACEBAR
+Click or press SPACEBAR to skip dialogue
+
+Dying will return you to
+the last checkpoint"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+pause_mode = 2
+margin_left = 128.0
+margin_top = 156.0
+margin_right = 192.0
+margin_bottom = 172.0
+size_flags_horizontal = 6
+texture_normal = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BackButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 1 )
+text = "BACK"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_up" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_BackButton_button_up"]

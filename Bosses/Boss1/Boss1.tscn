@@ -5,6 +5,7 @@
 [ext_resource path="res://sprites/force_field.png" type="Texture" id=3]
 [ext_resource path="res://sprites/enemy_ship.png" type="Texture" id=4]
 [ext_resource path="res://sprites/cannon.png" type="Texture" id=5]
+[ext_resource path="res://Weapons/Bullets/AlienBullet/AlienBullet.tscn" type="PackedScene" id=6]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 4 )
@@ -84,7 +85,9 @@ wait_time = 2.0
 position = Vector2( -39, -28 )
 
 [node name="Weapon1" parent="PosNode/Weapon1Area" index="0"]
+bullet = ExtResource( 6 )
 shoot_cooldown = 0.0
+bullet_speed = 100
 
 [node name="Weapon1Sprite" parent="PosNode/Weapon1Area" index="1"]
 position = Vector2( 17.294, 0 )
@@ -95,7 +98,9 @@ texture = ExtResource( 5 )
 position = Vector2( -39, 28 )
 
 [node name="Weapon2" parent="PosNode/Weapon2Area" index="0"]
+bullet = ExtResource( 6 )
 shoot_cooldown = 0.0
+bullet_speed = 100
 shoot_delay = 0.9
 
 [node name="Weapon2Sprite" parent="PosNode/Weapon2Area" index="1"]
@@ -130,5 +135,4 @@ autoplay = "Spawn"
 anims/Death = SubResource( 5 )
 anims/Hover = SubResource( 6 )
 anims/Spawn = SubResource( 7 )
-
 [connection signal="animation_finished" from="PosNode/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
