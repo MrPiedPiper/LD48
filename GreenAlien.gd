@@ -3,6 +3,7 @@ extends Area2D
 export(int) var SPEED = 20
 export(int) var ARMOR = 2
 
+onready var audioStreamPlayer2D = $AudioStreamPlayer2D
 onready var animationPlayer = $AnimationPlayer
 const ExplosionEffect = preload("res://ExplosionEffect.tscn")
 
@@ -21,6 +22,7 @@ func _on_GreenAlien_area_entered(area):
 			var main = get_tree().current_scene
 			if main.is_in_group("World"):
 				main.score += 10
+			audioStreamPlayer2D.play()
 			queue_free()
 
 func _on_VisibilityNotifier2D_screen_exited():
@@ -36,3 +38,7 @@ func _exit_tree():
 	main.add_child(explosionEffect)
 	# set the explosionEffect to the global position
 	explosionEffect.global_position = global_position
+
+
+func _on_AudioStreamPlayer2D_finished():
+	queue_free()
