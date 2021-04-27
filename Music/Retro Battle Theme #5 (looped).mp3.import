@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Retro Battle Theme #5 (looped).mp3-a1b9f2728ff87a4786954538bbffb8d9.mp3str"
+
+[deps]
+
+source_file="res://Music/Retro Battle Theme #5 (looped).mp3"
+dest_files=[ "res://.import/Retro Battle Theme #5 (looped).mp3-a1b9f2728ff87a4786954538bbffb8d9.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
