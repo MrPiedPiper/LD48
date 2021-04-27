@@ -70,7 +70,4 @@ autoplay = true
 [connection signal="start_dialog" from="FlowManager" to="." method="_on_FlowManager_start_dialog"]
 [connection signal="stop_enemies" from="FlowManager" to="." method="_on_FlowManager_stop_enemies"]
 [connection signal="summon_boss" from="FlowManager" to="." method="_on_FlowManager_summon_boss"]
-[node name="Boss1" parent="." instance=ExtResource( 4 )]
-position = Vector2( 270, 68 )
-
 [connection signal="dialog_done" from="GUI/DialogBox" to="." method="_on_DialogBox_dialog_done"]
