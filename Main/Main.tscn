@@ -61,6 +61,10 @@ __meta__ = {
 [node name="EnemySpawner" parent="." instance=ExtResource( 6 )]
 position = Vector2( 320, 0 )
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
+
 [connection signal="clear_stuff_from_screen" from="FlowManager" to="." method="_on_FlowManager_clear_stuff_from_screen"]
 [connection signal="spawn_enemies" from="FlowManager" to="." method="_on_FlowManager_spawn_enemies"]
 [connection signal="start_dialog" from="FlowManager" to="." method="_on_FlowManager_start_dialog"]
@@ -69,7 +73,4 @@ position = Vector2( 320, 0 )
 [node name="Boss1" parent="." instance=ExtResource( 4 )]
 position = Vector2( 270, 68 )
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 8 )
-autoplay = true
 [connection signal="dialog_done" from="GUI/DialogBox" to="." method="_on_DialogBox_dialog_done"]
