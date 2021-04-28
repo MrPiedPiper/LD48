@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Main/DialogScenes/Dialog/Dialog.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/DialogScenes/DialogItem/DialogItem.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Main/DialogScenes/DialogBox/Characters/Characters.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Main/DialogScenes/DialogGroups/TextTester.gd" type="Script" id=6]
 [ext_resource path="res://Main/DialogScenes/DialogGroups/Dialogs.gd" type="Script" id=8]
-[ext_resource path="res://Main/DialogScenes/DialogItem/DialogItem.gd" type="Script" id=10]
 
 [node name="DialogGroups" type="Node"]
 script = ExtResource( 3 )
@@ -19,8 +18,7 @@ dialog_template = ExtResource( 1 )
 [node name="Intro" parent="Dialogs" instance=ExtResource( 1 )]
 id = 0
 
-[node name="DialogItem40" type="Node" parent="Dialogs/Intro" instance=ExtResource( 2 )]
-script = ExtResource( 10 )
+[node name="DialogItem40" parent="Dialogs/Intro" instance=ExtResource( 2 )]
 dialog = "Hit [right-click] or [period] to progress dialogue"
 
 [node name="DialogItem41" parent="Dialogs/Intro" instance=ExtResource( 2 )]
@@ -150,7 +148,7 @@ left_frame = 1
 right_id = 2
 
 [node name="DialogItem19" parent="Dialogs/Intro" instance=ExtResource( 2 )]
-dialog = "The United Federation of Allied Galaxies"
+dialog = "The Confederation Of Galaxies"
 speaking = 1
 left_id = 0
 left_frame = 1
@@ -164,7 +162,7 @@ left_frame = 1
 right_id = 2
 
 [node name="DialogItem21" parent="Dialogs/Intro" instance=ExtResource( 2 )]
-dialog = "During my time working for the Federation,"
+dialog = "During my time working for the Confederation,"
 speaking = 1
 left_id = 0
 left_frame = 1
@@ -191,7 +189,7 @@ left_id = 0
 right_id = 2
 
 [node name="DialogItem25" parent="Dialogs/Intro" instance=ExtResource( 2 )]
-dialog = "The Federation has already claimed"
+dialog = "The Confederation has already claimed"
 speaking = 1
 left_id = 0
 right_id = 2
@@ -353,14 +351,14 @@ left_frame = 2
 right_id = 2
 
 [node name="DialogItem8" parent="Dialogs/PreLevel1" instance=ExtResource( 2 )]
-dialog = "The Federation is attacking ALREADY?"
+dialog = "The Confederation is attacking ALREADY?"
 speaking = 0
 left_id = 0
 left_frame = 1
 right_id = 2
 
 [node name="DialogItem9" parent="Dialogs/PreLevel1" instance=ExtResource( 2 )]
-dialog = "It’s not the Federation - "
+dialog = "It’s not the Confederation - "
 speaking = 1
 left_id = 0
 left_frame = 1
@@ -429,7 +427,7 @@ right_id = 2
 right_frame = 1
 
 [node name="DialogItem5" parent="Dialogs/PreBoss1" instance=ExtResource( 2 )]
-dialog = "A Federation battleship!"
+dialog = "A Confederation battleship!"
 speaking = 1
 left_id = 0
 left_frame = 1
@@ -457,7 +455,7 @@ speaking = 1
 right_id = 1
 
 [node name="DialogItem9" parent="Dialogs/PreBoss1" instance=ExtResource( 2 )]
-dialog = "the U.F.A.G. has declared this district"
+dialog = "the C.O.G. has declared this district"
 speaking = 1
 right_id = 1
 
@@ -495,7 +493,7 @@ left_frame = 1
 right_id = 1
 
 [node name="DialogItem15" parent="Dialogs/PreBoss1" instance=ExtResource( 2 )]
-dialog = "I am on U.F.A.G. Business,"
+dialog = "I am on C.O.G. Business,"
 speaking = 0
 left_id = 2
 left_frame = 1
@@ -622,7 +620,6 @@ script = ExtResource( 6 )
 chars = ExtResource( 5 )
 dialog_item_template = ExtResource( 2 )
 add_to_id = 0
-dialog = "Hit [right-click] or [period] to progress dialogue"
 
 [node name="DialogBox" type="Control" parent="Tools/TextTester"]
 anchor_top = 0.75
